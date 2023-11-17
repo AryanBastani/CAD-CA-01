@@ -80,4 +80,8 @@ module controller (
         endcase
     end
     
+    always @(posedge clk) begin
+        ps <= ns;
+    end
+    
 endmodule
