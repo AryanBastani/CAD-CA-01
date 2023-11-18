@@ -8,8 +8,10 @@ module Maxnet(
     output[31:0] max
 );
 
-reg actWrite, addWrite, multWrite,
-    mainRegWrite, s1, s2, s3, s4, found;
+wire actWrite, addWrite, multWrite,
+    mainRegWrite, s1, s2, s3, s4;
+
+wire found;
 
 datapath my_datapath(
     clk,
