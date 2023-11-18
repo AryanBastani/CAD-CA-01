@@ -1,7 +1,6 @@
 module datapath(
     input clk,
     input rst,
-    input main_write,
     input actWrite,
     input addWrite,
     input multWrite,
@@ -20,7 +19,7 @@ module datapath(
     a1, a2, a3, a4, f_out1, f_out2, f_out3,
     f_out4, p1, p2 ,p3, p4;
 
-    group_4_registers main_registers(clk, rst, main_write,
+    group_4_registers main_registers(clk, rst, mainRegWrite,
         num1, num2, num3, num4, x1, x2, x3, x4);
 
     mux_2_to_1 input_mux1(x1, b1, s1, act_in1);
