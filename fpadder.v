@@ -1,4 +1,4 @@
-module floating_adder(
+module fp_adder(
     input [31:0] a, b,
     output reg [31:0] out
 );
