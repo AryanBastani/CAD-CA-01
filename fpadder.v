@@ -38,7 +38,7 @@ module fp_adder(
                 end
                 else begin
                     if(b_exp[7] && |b_exp[6:0])begin
-                        b_mantis = b_mantis >> (a_exp + ~b_mantis + 1'b1);
+                        b_mantis = b_mantis >> (a_exp + ~b_exp + 1'b1);
                     end
                     else begin
                         b_mantis = (a_exp > b_exp) ? b_mantis >> (a_exp - b_exp) : b_mantis;
