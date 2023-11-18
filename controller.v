@@ -19,7 +19,7 @@ module controller (
         state4 = 3'b100,
         state5 = 3'b101,
         state6 = 3'b110,
-	state7 = 3'b111;
+        state7 = 3'b111;
 
     reg [2:0] ps = state0;
     reg [2:0] ns;

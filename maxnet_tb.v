@@ -18,6 +18,6 @@ module tb ();
     initial begin
         #20 rr = 1'b0;
         #20 ss = 1'b1;
-        #500 $stop;
+        #2000 $stop;
     end
 endmodule
