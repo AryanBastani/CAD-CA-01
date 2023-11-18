@@ -27,7 +27,7 @@ module fp_multiplier(
         b_mantis = {1'b1, b[22:0]};
 
 
-        if(a == 0 && b == 0) begin
+        if(a == 0 || b == 0) begin
             out = 0;
         end
 
