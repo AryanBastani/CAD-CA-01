@@ -47,7 +47,7 @@ module floating_adder(
                 end
                 // b_exp = (a_exp > b_exp) ? a_exp : b_exp;
                 if (a_exp[7] && |a_exp[6:0])begin
-                    if(b_exp[7] && |b_exp)begin
+                    if(b_exp[7] && |b_exp[6:0])begin
                         b_exp = (a_exp > b_exp) ? a_exp : b_exp;
                         a_exp = (b_exp > a_exp) ? b_exp : a_exp;
                     end
