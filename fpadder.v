@@ -29,8 +29,8 @@ module fp_adder(
                 // b_mantis = (a_exp > b_exp) ? b_mantis >> (a_exp - b_exp) : b_mantis;
                 if (a_exp[7] && |a_exp[6:0])begin
                     if(b_exp[7] && |b_exp[6:0])begin
-                        b_mantis = (a_exp > b_exp) ? b_mantis << ~(a_exp - b_exp) + 1'b1 : b_mantis;
-                        a_mantis = (b_exp > a_exp) ? a_mantis << ~(b_exp - a_exp) + 1'b1 : a_mantis;
+                        b_mantis = (a_exp > b_exp) ? b_mantis >> a_exp - b_exp : b_mantis;
+                        a_mantis = (b_exp > a_exp) ? a_mantis >> b_exp - a_exp : a_mantis;
                     end
                     else begin 
                         a_mantis = a_mantis >> (b_exp + ~a_exp + 1'b1);

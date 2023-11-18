@@ -12,6 +12,9 @@ module datapath(
     output[31:0] max
 );
 
+    reg[31:0] temp = 32'h3f800000;
+    reg[31:0] zero_val = 32'h0;
+    
     wire[31:0] b1, b2, b3, b4;
     wire p1, p2 ,p3, p4;
 
@@ -20,9 +23,6 @@ module datapath(
         act_out1, act_out2, act_out3, act_out4,
         a1, a2, a3, a4,f_out1, f_out2, f_out3,
         f_out4;
-    wire [31:0] neg_epsil = {1'b1, epsilon[30:0]};
-
-    parameter [31:0] ieee_one = 32'b00111111100000000000000000000000;
 
     group_4_registers main_registers(clk, rst, mainRegWrite,
         num1, num2, num3, num4, x1, x2, x3, x4);
@@ -37,13 +37,13 @@ module datapath(
         act_out1, act_out2, act_out3, act_out4);
     
     PU pu1(clk, rst, multWrite, act_out1, act_out2,
-        act_out3, act_out4, ieee_one, neg_epsil, neg_epsil, neg_epsil, a1);
+        act_out3, act_out4, temp, epsilon, epsilon, epsilon, a1);
     PU pu2(clk, rst, multWrite, act_out1, act_out2,
-        act_out3, act_out4, neg_epsil, ieee_one, neg_epsil, neg_epsil, a2);
+        act_out3, act_out4, epsilon, temp, epsilon, epsilon, a2);
     PU pu3(clk, rst, multWrite, act_out1, act_out2,
-        act_out3, act_out4, neg_epsil, neg_epsil, ieee_one, neg_epsil, a3);
+        act_out3, act_out4, epsilon, epsilon, temp, epsilon, a3);
     PU pu4(clk, rst, multWrite, act_out1, act_out2,
-        act_out3, act_out4, neg_epsil, neg_epsil, neg_epsil, ieee_one, a4);
+        act_out3, act_out4, epsilon, epsilon, epsilon, temp, a4);
 
     activationFunction f1(a1, f_out1);
     activationFunction f2(a2, f_out2);
@@ -55,10 +55,10 @@ module datapath(
     reg_32bit f_reg3(clk, rst, addWrite, f_out3, b3);
     reg_32bit f_reg4(clk, rst, addWrite, f_out4, b4);
 
-    Comparator cmp1(0, b1, p1);
-    Comparator cmp2(0, b2, p2);
-    Comparator cmp3(0, b3, p3);
-    Comparator cmp4(0, b4, p4);
+    Comparator cmp1(zero_val, b1, p1);
+    Comparator cmp2(zero_val, b2, p2);
+    Comparator cmp3(zero_val, b3, p3);
+    Comparator cmp4(zero_val, b4, p4);
 
     checkOnes chek_ones(p1, p2, p3, p4, found);
     

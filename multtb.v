@@ -14,8 +14,8 @@ module floatMultTB();
     initial begin
         clk = 0;
         // Test case 1: 1.0 + 2.0 = 3.0
-        a = 32'h3F800000; // 1.0 in IEEE 754
-        b = 32'h40000000; // 2.0 in IEEE 754
+        a = 32'hbe99999a; // 1.0 in IEEE 754 -0.3
+        b = 32'h3fcccccd;
         #10;
         if(sum !== 32'b01000000010000000000000000000000) $display("Test case 1 failed");
 

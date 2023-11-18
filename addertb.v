@@ -5,7 +5,7 @@ module floatAddTB();
     wire [31:0] sum;
     reg clk;
 
-    floating_adder u2(a, b, sum);
+    fp_adder u2(a, b, sum);
 
     always begin
         #5 clk = ~clk;
@@ -64,8 +64,8 @@ module floatAddTB();
         if(sum !== 32'b01000000000100110011001100110011) $display("Test case 7 failed");
 
         // test case 8 -0.5 + 2.5 = 2
-        a = 32'hbf000000;
-        b = 32'h40200000;
+        b = 32'hbf000000;
+        a = 32'h40200000;
         #10;
         if(sum !== 32'b01000000000000000000000000000000) $display("Test case 8 failed");
 
